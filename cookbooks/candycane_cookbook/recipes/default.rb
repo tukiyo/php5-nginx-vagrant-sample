@@ -1,8 +1,12 @@
+execute "set japan mirror repository" do
+  command "sudo sed -i -e 's@http://us.archive.ubuntu.com@http://jp.archive.ubuntu.com@' /etc/apt/sources.list"
+end
+
 execute "apt-get" do
   command "apt-get update"
 end
 
-%w{git subversion nginx php5 php5-mysql php5-curl php5-cli php5-fpm php-pear mysql-server}.each do |pkg|
+%w{git subversion nginx php5 php5-mysql php5-curl php5-cli php5-fpm php-pear mysql-server curl}.each do |pkg|
   package pkg do
     action [:install, :upgrade]
   end
@@ -27,4 +31,8 @@ end
     service service_name do
       action [:start, :restart]
     end
+end
+
+execute "apt-get clean" do
+  command "apt-get clean"
 end
