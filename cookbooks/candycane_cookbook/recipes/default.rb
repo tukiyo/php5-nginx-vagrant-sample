@@ -28,3 +28,7 @@ end
       action [:start, :restart]
     end
 end
+
+execute "apt-get clean" do
+  command "apt-get clean"
+end
