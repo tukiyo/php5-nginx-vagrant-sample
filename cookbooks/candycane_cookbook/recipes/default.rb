@@ -1,3 +1,7 @@
+execute "set japan mirror repository" do
+  command "sudo sed -i -e 's@http://us.archive.ubuntu.com@http://jp.archive.ubuntu.com@' /etc/apt/sources.list"
+end
+
 execute "apt-get" do
   command "apt-get update"
 end
